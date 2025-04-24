@@ -16,8 +16,7 @@ def pridat_ukol():
         if nazev_1.strip() and popis_1.strip():
             nazev_1 = nazev_1.replace(" - ", "-")
             ukoly.append(f"{nazev_1} - {popis_1}")
-            vysledek_1 = f"Úkol '{nazev_1}' byl přidán.\n"
-            return vysledek_1
+            return f"Úkol '{nazev_1}' byl přidán.\n"
         else:
             print("Pole název a popis nesmí být prázdné!")
         
@@ -26,21 +25,17 @@ def zobrazit_ukoly():
     zobrazit = ""
     for index, row in enumerate(ukoly, start=1):
         zobrazit += f"{index}. {row}\n"
-    vysledek_2 = f"\nSeznam úkolů:\n{zobrazit}\n"
-    return vysledek_2
+    return f"\nSeznam úkolů:\n{zobrazit}\n"
 
 
 def odstranit_ukol():
-    zobrazit = ""
-    for index, row in enumerate(ukoly, start=1):
-        zobrazit += f"{index}. {row}\n"
     while True:
-        vysledek_3 = input(f"\nSeznam úkolů:\n{zobrazit}\n\nZadejte číslo úkolu, který chcete odstranit: ")
-        if vysledek_3.isnumeric() and int(vysledek_3) in range(1, len(ukoly)+1):
-            vysledek_3 = int(vysledek_3)
-            zmazany_ukol = (ukoly[vysledek_3-1]).split(" - ")
+        vstup_3 = input(f"\n{zobrazit_ukoly()}\nZadejte číslo úkolu, který chcete odstranit: ")
+        if vstup_3.isnumeric() and int(vstup_3) in range(1, len(ukoly)+1):
+            vstup_3 = int(vstup_3)
+            zmazany_ukol = (ukoly[vstup_3-1]).split(" - ")
             zmazany_ukol = zmazany_ukol[0]
-            ukoly.pop(vysledek_3-1)
+            ukoly.pop(vstup_3-1)
             return f"Úkol '{zmazany_ukol}' byl odstraněn.\n"
         else:
             print("\nNeznáme číslo úkolu. Zadejte znovu.")
